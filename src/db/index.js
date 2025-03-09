@@ -1,6 +1,6 @@
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { Client } from 'pg';
-import * as schema from './schema';
+const { drizzle } = require('drizzle-orm/node-postgres');
+const { Client } = require('pg');
+const schema = require('./schema');
 
 
 const client = new Client({
@@ -11,6 +11,6 @@ const client = new Client({
     database: 'database',
 });
 
-await client.connect();
+client.connect();
 
-export const db = drizzle(client, { schema });
+module.exports = drizzle(client, { schema });
